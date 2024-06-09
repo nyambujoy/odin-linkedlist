@@ -136,22 +136,45 @@ class LinkedList {
     }
     contains(value) {
         if (this.isEmpty()) {
-            return
+            return -1
         } else {
+            let i = 0
             let curr = this.head
             while (curr) {
                 if (curr.value === value) {
                     console.log('value is present')
-                    return
-                } else {
-                    console.log('value not found')
-                }
+                    return i
 
+                }
                 curr = curr.next
+                i++
             }
+            return -1
 
         }
 
+    }
+    removeGivenVal(value) {
+        if (this.isEmpty()) {
+            return null
+        }
+        if (this.head.value === value) {
+            this.head = this.head.next
+            this.size--
+            return value
+        } else {
+            let prev = this.head
+            while (prev.next && prev.next.value !== value) {
+                prev = prev.next
+            }
+            if (prev.next) {
+                let removeNode = prev.next
+                prev.next = removeNode.next
+                this.size--
+                return value
+            }
+            return null
+        }
     }
 
 }
@@ -169,10 +192,13 @@ console.log(newNode.getHead())
 console.log(newNode.getTail())
 newNode.insertAt(2, 1)
 console.log(newNode.print())
-console.log(newNode.removeAt(1))
+// console.log(newNode.removeAt(1))
 console.log(newNode.nodeAt(1))
-newNode.contains(5)
+console.log(newNode.contains(5))
 console.log(newNode.print())
+// console.log(newNode.removeGivenVal(10))
+// console.log(newNode.print())
+
 
 
 
